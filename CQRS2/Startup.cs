@@ -1,3 +1,4 @@
+using CQRS2.Behaivor;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +36,7 @@ namespace CQRS2
             });
             services.AddSingleton<Database.Repository>();
             services.AddMediatR(typeof(Startup));
+            services.AddTransient(typeof(IPipelineBehavior<,>),typeof(LogginBehaivor<,>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
